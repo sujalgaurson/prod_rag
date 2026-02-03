@@ -9,6 +9,10 @@ from app.EVALUATION.ragas_eval import evaluate_answer
 
 router = APIRouter()
 
+@router.get("/")
+def read_root():
+    return {"message": "Welcome to the RAG API"}
+
 @router.post("/upload")
 def upload_file(file: UploadFile = File(...)):
     file_path = f"data/{file.filename}"
