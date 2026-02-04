@@ -4,6 +4,11 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Production RAG System")
 
+# 🔍 Health check (used by Docker / AWS / Load Balancers)
+@app.get("/health", tags=["health"])
+def health():
+    return {"status": "ok"}
+
 # ✅ REQUIRED for frontend ↔ backend communication
 app.add_middleware(
     CORSMiddleware,
